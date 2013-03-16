@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="externalBuilder"
+         name="External Project Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="com.es.eclipse.externalbuilder.builder.ExternalBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="externalBuilderNature"
+         name="External Builder Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.es.eclipse.externalbuilder.builder.ExternalBuilderNature">
+         </run>
+      </runtime>
+      <builder
+            id="com.es.eclipse.externalbuilder.externalBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IProject"
+            nameFilter="*"
+            id="com.es.eclipse.externalbuilder.contribution1">
+         <action
+               label="Add/Remove External Builder Nature"
+               class="com.es.eclipse.externalbuilder.builder.ToggleNatureAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="com.es.eclipse.externalbuilder.addRemoveNatureAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="xmlProblem"
+         name="XML Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+</plugin>
